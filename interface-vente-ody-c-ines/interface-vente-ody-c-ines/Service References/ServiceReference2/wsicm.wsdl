@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://webservice.ines.fr" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://webservice.ines.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://webservice.ines.fr">
+      <s:element name="AddClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="client" type="tns:ClientInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ClientInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Confidentiality" type="tns:Confidential" />
+              <s:element minOccurs="0" maxOccurs="1" name="Contacts" type="tns:ArrayOfContactInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Service" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="SalesResponsable" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TechnicalResponsable" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ModifiedDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Origin" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CustomerNumber" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CompanyTaxCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="VatTax" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Bank" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BankAccount" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PaymentMethod" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PaymentMethodRef" nillable="true" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="Discount" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="HeadQuarter" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Language" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AccountingCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Scoring" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Remainder" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaxRemainder" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Moral" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Folder" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="BankReference" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TaxType" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="VatTaxValue" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Creator" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Delivery" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Billing" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="InfoOfInt32" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="InternalRef" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContactInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BussinesTelephone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HomeTelephone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MobilePhone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BusinessAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HomeAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Function" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Service" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CompanyRef" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="PrimaryMailAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SecondaryMailAddress" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Rang" type="tns:ContactRang" />
+              <s:element minOccurs="0" maxOccurs="1" name="Genre" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Author" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Confidentiality" type="tns:Confidential" />
+              <s:element minOccurs="1" maxOccurs="1" name="ModificationDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Language" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ContactRang">
+        <s:restriction base="s:string">
+          <s:enumeration value="Secondaire" />
+          <s:enumeration value="Principal" />
+          <s:enumeration value="Archive" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="Confidential">
+        <s:restriction base="s:string">
+          <s:enumeration value="Public" />
+          <s:enumeration value="ReadOnly" />
+          <s:enumeration value="Private" />
+          <s:enumeration value="Undefined" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfContactInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ContactInfo" nillable="true" type="tns:ContactInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddClientResult" type="tns:ClientInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SessionID" type="tns:SessionID" />
+      <s:complexType name="SessionID">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="AddClientWithContacts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="client" type="tns:ClientInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddClientWithContactsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddClientWithContactsResult" type="tns:ClientInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientResult" type="tns:ClientInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientWithContacts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientWithContactsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientWithContactsResult" type="tns:ClientInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContactResult" type="tns:ContactInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateContact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contact" type="tns:ContactInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateContactResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateContactResult" type="tns:ContactInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddContact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contact" type="tns:ContactInfo" />
+            <s:element minOccurs="1" maxOccurs="1" name="clientRef" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddContactResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddContactResult" type="tns:ContactInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="client" type="tns:ClientInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateClientResult" type="tns:ClientInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactRef">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contactMail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactRefResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetContactRefResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRH">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRHResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRHResult" type="tns:ResHum" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResHum">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prefix" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetContactAuthentication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactAuthenticationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetContactAuthenticationResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateContactPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateContactPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateContactPasswordResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContactPasswordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRhEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRhEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRhEmailResult" type="tns:ResHum" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSiren">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="siren" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSirenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSirenResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTypeMoral">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTypeMoralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTypeMoralResult" type="tns:ArrayOfTypeMoral" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTypeMoral">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TypeMoral" nillable="true" type="tns:TypeMoral" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TypeMoral">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Ref" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SearchClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="clientName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="limit" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="skip" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchClientResult" type="tns:SearchClientResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SearchClientResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Clients" type="tns:ArrayOfClient" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfClient">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Client" nillable="true" type="tns:Client" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Client">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddClientSoapIn">
+    <wsdl:part name="parameters" element="tns:AddClient" />
+  </wsdl:message>
+  <wsdl:message name="AddClientSoapOut">
+    <wsdl:part name="parameters" element="tns:AddClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddClientSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="AddClientWithContactsSoapIn">
+    <wsdl:part name="parameters" element="tns:AddClientWithContacts" />
+  </wsdl:message>
+  <wsdl:message name="AddClientWithContactsSoapOut">
+    <wsdl:part name="parameters" element="tns:AddClientWithContactsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddClientWithContactsSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetClientSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClient" />
+  </wsdl:message>
+  <wsdl:message name="GetClientSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetClientWithContactsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientWithContacts" />
+  </wsdl:message>
+  <wsdl:message name="GetClientWithContactsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientWithContactsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientWithContactsSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContact" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContactSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContactSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateContact" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContactSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContactSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="AddContactSoapIn">
+    <wsdl:part name="parameters" element="tns:AddContact" />
+  </wsdl:message>
+  <wsdl:message name="AddContactSoapOut">
+    <wsdl:part name="parameters" element="tns:AddContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddContactSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClientSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateClient" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClientSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClientSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetContactRefSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContactRef" />
+  </wsdl:message>
+  <wsdl:message name="GetContactRefSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContactRefResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContactRefSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetRHSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRH" />
+  </wsdl:message>
+  <wsdl:message name="GetRHSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRHResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRHSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetContactAuthenticationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContactAuthentication" />
+  </wsdl:message>
+  <wsdl:message name="GetContactAuthenticationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContactAuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContactAuthenticationSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContactPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateContactPassword" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContactPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateContactPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContactPasswordSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetContactPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContactPassword" />
+  </wsdl:message>
+  <wsdl:message name="GetContactPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContactPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContactPasswordSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetRhEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRhEmail" />
+  </wsdl:message>
+  <wsdl:message name="GetRhEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRhEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRhEmailSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetSirenSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSiren" />
+  </wsdl:message>
+  <wsdl:message name="GetSirenSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSirenResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSirenSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetTypeMoralSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTypeMoral" />
+  </wsdl:message>
+  <wsdl:message name="GetTypeMoralSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTypeMoralResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTypeMoralSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="SearchClientSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchClient" />
+  </wsdl:message>
+  <wsdl:message name="SearchClientSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchClientSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:portType name="WSICMSoap">
+    <wsdl:operation name="AddClient">
+      <wsdl:input message="tns:AddClientSoapIn" />
+      <wsdl:output message="tns:AddClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddClientWithContacts">
+      <wsdl:input message="tns:AddClientWithContactsSoapIn" />
+      <wsdl:output message="tns:AddClientWithContactsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClient">
+      <wsdl:input message="tns:GetClientSoapIn" />
+      <wsdl:output message="tns:GetClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientWithContacts">
+      <wsdl:input message="tns:GetClientWithContactsSoapIn" />
+      <wsdl:output message="tns:GetClientWithContactsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContact">
+      <wsdl:input message="tns:GetContactSoapIn" />
+      <wsdl:output message="tns:GetContactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContact">
+      <wsdl:input message="tns:UpdateContactSoapIn" />
+      <wsdl:output message="tns:UpdateContactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddContact">
+      <wsdl:input message="tns:AddContactSoapIn" />
+      <wsdl:output message="tns:AddContactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClient">
+      <wsdl:input message="tns:UpdateClientSoapIn" />
+      <wsdl:output message="tns:UpdateClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactRef">
+      <wsdl:input message="tns:GetContactRefSoapIn" />
+      <wsdl:output message="tns:GetContactRefSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRH">
+      <wsdl:input message="tns:GetRHSoapIn" />
+      <wsdl:output message="tns:GetRHSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactAuthentication">
+      <wsdl:input message="tns:GetContactAuthenticationSoapIn" />
+      <wsdl:output message="tns:GetContactAuthenticationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactPassword">
+      <wsdl:input message="tns:UpdateContactPasswordSoapIn" />
+      <wsdl:output message="tns:UpdateContactPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactPassword">
+      <wsdl:input message="tns:GetContactPasswordSoapIn" />
+      <wsdl:output message="tns:GetContactPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRhEmail">
+      <wsdl:input message="tns:GetRhEmailSoapIn" />
+      <wsdl:output message="tns:GetRhEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSiren">
+      <wsdl:input message="tns:GetSirenSoapIn" />
+      <wsdl:output message="tns:GetSirenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTypeMoral">
+      <wsdl:input message="tns:GetTypeMoralSoapIn" />
+      <wsdl:output message="tns:GetTypeMoralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchClient">
+      <wsdl:input message="tns:SearchClientSoapIn" />
+      <wsdl:output message="tns:SearchClientSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSICMSoap" type="tns:WSICMSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddClient">
+      <soap:operation soapAction="http://webservice.ines.fr/AddClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddClientSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddClientSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddClientWithContacts">
+      <soap:operation soapAction="http://webservice.ines.fr/AddClientWithContacts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddClientWithContactsSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddClientWithContactsSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClient">
+      <soap:operation soapAction="http://webservice.ines.fr/GetClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientWithContacts">
+      <soap:operation soapAction="http://webservice.ines.fr/GetClientWithContacts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientWithContactsSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientWithContactsSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContact">
+      <soap:operation soapAction="http://webservice.ines.fr/GetContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetContactSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetContactSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContact">
+      <soap:operation soapAction="http://webservice.ines.fr/UpdateContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateContactSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateContactSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddContact">
+      <soap:operation soapAction="http://webservice.ines.fr/AddContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddContactSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddContactSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClient">
+      <soap:operation soapAction="http://webservice.ines.fr/UpdateClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateClientSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateClientSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactRef">
+      <soap:operation soapAction="http://webservice.ines.fr/GetContactRef" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetContactRefSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetContactRefSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRH">
+      <soap:operation soapAction="http://webservice.ines.fr/GetRH" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRHSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRHSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactAuthentication">
+      <soap:operation soapAction="http://webservice.ines.fr/GetContactAuthentication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetContactAuthenticationSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetContactAuthenticationSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactPassword">
+      <soap:operation soapAction="http://webservice.ines.fr/UpdateContactPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateContactPasswordSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateContactPasswordSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactPassword">
+      <soap:operation soapAction="http://webservice.ines.fr/GetContactPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetContactPasswordSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetContactPasswordSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRhEmail">
+      <soap:operation soapAction="http://webservice.ines.fr/GetRhEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRhEmailSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRhEmailSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiren">
+      <soap:operation soapAction="http://webservice.ines.fr/GetSiren" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSirenSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSirenSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTypeMoral">
+      <soap:operation soapAction="http://webservice.ines.fr/GetTypeMoral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTypeMoralSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTypeMoralSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchClient">
+      <soap:operation soapAction="http://webservice.ines.fr/SearchClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SearchClientSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:SearchClientSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSICMSoap12" type="tns:WSICMSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddClient">
+      <soap12:operation soapAction="http://webservice.ines.fr/AddClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddClientSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddClientSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddClientWithContacts">
+      <soap12:operation soapAction="http://webservice.ines.fr/AddClientWithContacts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddClientWithContactsSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddClientWithContactsSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClient">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientWithContacts">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetClientWithContacts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientWithContactsSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientWithContactsSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContact">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetContactSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetContactSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContact">
+      <soap12:operation soapAction="http://webservice.ines.fr/UpdateContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateContactSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateContactSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddContact">
+      <soap12:operation soapAction="http://webservice.ines.fr/AddContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddContactSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddContactSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClient">
+      <soap12:operation soapAction="http://webservice.ines.fr/UpdateClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateClientSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateClientSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactRef">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetContactRef" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetContactRefSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetContactRefSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRH">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetRH" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRHSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRHSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactAuthentication">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetContactAuthentication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetContactAuthenticationSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetContactAuthenticationSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContactPassword">
+      <soap12:operation soapAction="http://webservice.ines.fr/UpdateContactPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateContactPasswordSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateContactPasswordSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactPassword">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetContactPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetContactPasswordSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetContactPasswordSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRhEmail">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetRhEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRhEmailSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRhEmailSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiren">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetSiren" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSirenSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSirenSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTypeMoral">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetTypeMoral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTypeMoralSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTypeMoralSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchClient">
+      <soap12:operation soapAction="http://webservice.ines.fr/SearchClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SearchClientSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SearchClientSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSICM">
+    <wsdl:port name="WSICMSoap" binding="tns:WSICMSoap">
+      <soap:address location="https://webservices.inescrm.com/ws/wsicm.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSICMSoap12" binding="tns:WSICMSoap12">
+      <soap12:address location="https://webservices.inescrm.com/ws/wsicm.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

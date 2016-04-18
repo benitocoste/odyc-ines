@@ -47,6 +47,10 @@
             this.button5 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.output = new System.Windows.Forms.RichTextBox();
+            this.shortdescription = new System.Windows.Forms.TextBox();
+            this.longdescription = new System.Windows.Forms.TextBox();
+            this.soumettreBTN = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -230,11 +234,48 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Interface";
             // 
+            // output
+            // 
+            this.output.Location = new System.Drawing.Point(439, 123);
+            this.output.Name = "output";
+            this.output.Size = new System.Drawing.Size(352, 74);
+            this.output.TabIndex = 19;
+            this.output.Text = "";
+            // 
+            // shortdescription
+            // 
+            this.shortdescription.Location = new System.Drawing.Point(688, 48);
+            this.shortdescription.Name = "shortdescription";
+            this.shortdescription.Size = new System.Drawing.Size(100, 20);
+            this.shortdescription.TabIndex = 20;
+            this.shortdescription.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            // 
+            // longdescription
+            // 
+            this.longdescription.Location = new System.Drawing.Point(688, 84);
+            this.longdescription.Name = "longdescription";
+            this.longdescription.Size = new System.Drawing.Size(100, 20);
+            this.longdescription.TabIndex = 21;
+            // 
+            // soumettreBTN
+            // 
+            this.soumettreBTN.Location = new System.Drawing.Point(703, 201);
+            this.soumettreBTN.Name = "soumettreBTN";
+            this.soumettreBTN.Size = new System.Drawing.Size(75, 23);
+            this.soumettreBTN.TabIndex = 22;
+            this.soumettreBTN.Text = "Soumettre";
+            this.soumettreBTN.UseVisualStyleBackColor = true;
+            this.soumettreBTN.Click += new System.EventHandler(this.soumettreBTN_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(455, 339);
+            this.ClientSize = new System.Drawing.Size(803, 339);
+            this.Controls.Add(this.soumettreBTN);
+            this.Controls.Add(this.longdescription);
+            this.Controls.Add(this.shortdescription);
+            this.Controls.Add(this.output);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -245,6 +286,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -268,6 +310,10 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RichTextBox output;
+        private System.Windows.Forms.TextBox shortdescription;
+        private System.Windows.Forms.TextBox longdescription;
+        private System.Windows.Forms.Button soumettreBTN;
     }
 }
 

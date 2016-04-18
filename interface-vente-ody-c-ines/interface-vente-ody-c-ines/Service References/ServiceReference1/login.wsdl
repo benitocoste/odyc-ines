@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://webservice.ines.fr" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://webservice.ines.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://webservice.ines.fr">
+      <s:element name="getUserRefWs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:AuthRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="compte" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getUserRefWsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getUserRefWsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="authenticationWs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:AuthRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="authenticationWsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authenticationWsResult" type="tns:AuthResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="idSession" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="codeReturn" type="tns:CodeEnum" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CodeEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="ok" />
+          <s:enumeration value="failed" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="refreshSessionWs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="refreshSessionWsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="refreshSessionWsResult" type="tns:CodeEnum" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="logoutSessionWs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="logoutSessionWsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="logoutSessionWsResult" type="tns:CodeEnum" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getControlId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:AuthRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getControlIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getControlIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="contactAuthentication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:AuthContact" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthContact">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="mail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="contactAuthenticationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contactAuthenticationResult" type="tns:AuthContactResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthContactResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ContactRef" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientRef" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodeReturn" type="tns:CodeEnum" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="contactChangePassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="contactReference" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="contactChangePasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="contactChangePasswordResult" type="tns:CodeEnum" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getUserRefWsSoapIn">
+    <wsdl:part name="parameters" element="tns:getUserRefWs" />
+  </wsdl:message>
+  <wsdl:message name="getUserRefWsSoapOut">
+    <wsdl:part name="parameters" element="tns:getUserRefWsResponse" />
+  </wsdl:message>
+  <wsdl:message name="authenticationWsSoapIn">
+    <wsdl:part name="parameters" element="tns:authenticationWs" />
+  </wsdl:message>
+  <wsdl:message name="authenticationWsSoapOut">
+    <wsdl:part name="parameters" element="tns:authenticationWsResponse" />
+  </wsdl:message>
+  <wsdl:message name="refreshSessionWsSoapIn">
+    <wsdl:part name="parameters" element="tns:refreshSessionWs" />
+  </wsdl:message>
+  <wsdl:message name="refreshSessionWsSoapOut">
+    <wsdl:part name="parameters" element="tns:refreshSessionWsResponse" />
+  </wsdl:message>
+  <wsdl:message name="logoutSessionWsSoapIn">
+    <wsdl:part name="parameters" element="tns:logoutSessionWs" />
+  </wsdl:message>
+  <wsdl:message name="logoutSessionWsSoapOut">
+    <wsdl:part name="parameters" element="tns:logoutSessionWsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getControlIdSoapIn">
+    <wsdl:part name="parameters" element="tns:getControlId" />
+  </wsdl:message>
+  <wsdl:message name="getControlIdSoapOut">
+    <wsdl:part name="parameters" element="tns:getControlIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="contactAuthenticationSoapIn">
+    <wsdl:part name="parameters" element="tns:contactAuthentication" />
+  </wsdl:message>
+  <wsdl:message name="contactAuthenticationSoapOut">
+    <wsdl:part name="parameters" element="tns:contactAuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="contactChangePasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:contactChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="contactChangePasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:contactChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:portType name="LoginSoap">
+    <wsdl:operation name="getUserRefWs">
+      <wsdl:input message="tns:getUserRefWsSoapIn" />
+      <wsdl:output message="tns:getUserRefWsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="authenticationWs">
+      <wsdl:input message="tns:authenticationWsSoapIn" />
+      <wsdl:output message="tns:authenticationWsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="refreshSessionWs">
+      <wsdl:input message="tns:refreshSessionWsSoapIn" />
+      <wsdl:output message="tns:refreshSessionWsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="logoutSessionWs">
+      <wsdl:input message="tns:logoutSessionWsSoapIn" />
+      <wsdl:output message="tns:logoutSessionWsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getControlId">
+      <wsdl:input message="tns:getControlIdSoapIn" />
+      <wsdl:output message="tns:getControlIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="contactAuthentication">
+      <wsdl:input message="tns:contactAuthenticationSoapIn" />
+      <wsdl:output message="tns:contactAuthenticationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="contactChangePassword">
+      <wsdl:input message="tns:contactChangePasswordSoapIn" />
+      <wsdl:output message="tns:contactChangePasswordSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LoginSoap" type="tns:LoginSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getUserRefWs">
+      <soap:operation soapAction="http://webservice.ines.fr/getUserRefWs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authenticationWs">
+      <soap:operation soapAction="http://webservice.ines.fr/authenticationWs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="refreshSessionWs">
+      <soap:operation soapAction="http://webservice.ines.fr/refreshSessionWs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logoutSessionWs">
+      <soap:operation soapAction="http://webservice.ines.fr/logoutSessionWs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getControlId">
+      <soap:operation soapAction="http://webservice.ines.fr/getControlId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="contactAuthentication">
+      <soap:operation soapAction="http://webservice.ines.fr/contactAuthentication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="contactChangePassword">
+      <soap:operation soapAction="http://webservice.ines.fr/contactChangePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LoginSoap12" type="tns:LoginSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getUserRefWs">
+      <soap12:operation soapAction="http://webservice.ines.fr/getUserRefWs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authenticationWs">
+      <soap12:operation soapAction="http://webservice.ines.fr/authenticationWs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="refreshSessionWs">
+      <soap12:operation soapAction="http://webservice.ines.fr/refreshSessionWs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logoutSessionWs">
+      <soap12:operation soapAction="http://webservice.ines.fr/logoutSessionWs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getControlId">
+      <soap12:operation soapAction="http://webservice.ines.fr/getControlId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="contactAuthentication">
+      <soap12:operation soapAction="http://webservice.ines.fr/contactAuthentication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="contactChangePassword">
+      <soap12:operation soapAction="http://webservice.ines.fr/contactChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Login">
+    <wsdl:port name="LoginSoap" binding="tns:LoginSoap">
+      <soap:address location="http://webservices.inescrm.com/wslogin/login.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LoginSoap12" binding="tns:LoginSoap12">
+      <soap12:address location="http://webservices.inescrm.com/wslogin/login.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
