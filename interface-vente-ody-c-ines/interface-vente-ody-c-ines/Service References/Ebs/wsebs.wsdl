@@ -1,0 +1,2031 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://webservice.ines.fr" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://webservice.ines.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://webservice.ines.fr">
+      <s:element name="AddBill">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="bill" type="tns:BillInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BillInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ClientName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ImpressionDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="AccountingDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="State" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExpirationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsPay" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="PaymentDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Tax1Value" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Tax2Value" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="NetPrice" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="NoTaxPrice" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="PaymentAmount" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Incoterm" type="tns:IncotermType" />
+              <s:element minOccurs="1" maxOccurs="1" name="Margin" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExpectedPaymentDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Recurrency" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="ShippingAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillInternalReference" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillExternalReference" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Client" type="tns:ClientInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillTo" type="tns:ClientInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="ShipTo" type="tns:ClientInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Contact" type="tns:ContactInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="PaymentMethod" type="tns:PaymentMethodInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Tax1" type="tns:TaxInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Tax2" type="tns:TaxInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Currency" type="tns:CurrencyInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Origin" type="tns:OriginInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="TaxType" type="tns:TaxTypeInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="SalesPerson" type="tns:UserInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Creator" type="tns:UserInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Bank" type="tns:BankInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Opportunity" type="tns:OpportInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Lines" type="tns:ArrayOfBillLineInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="InfoOfInt32" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="InternalRef" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArticleInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PropertiesDescription" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Weight" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Size" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="PurchasePrice" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Price1" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Price2" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Stock" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="MinimumStock" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaximumStock" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="SaleMinimumQuantity" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Stockable" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="State" type="tns:ArticleState" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastInventoryDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastPurchaseDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastSaleDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ModificationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="BarCode" type="tns:BarCodeType" />
+              <s:element minOccurs="0" maxOccurs="1" name="BarCodeValue" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsPublic" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ManagementCoeficient" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="StockBeforeInventory" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReceptionDelay" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DeliveryDelay" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ParentArticle" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="LotManagement" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SaleAccountingCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PurchaseAccountingCode" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SalePricingMethod" type="tns:SalePricingMethod" />
+              <s:element minOccurs="0" maxOccurs="1" name="Supplier" type="tns:ClientInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Warehouse" type="tns:ClientInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Unit" type="tns:UnitInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="WeightUnit" type="tns:UnitInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="SizeUnit" type="tns:UnitInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="ManagementUnit" type="tns:UnitInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Currency" type="tns:CurrencyInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Price1Currency" type="tns:CurrencyInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Price2Currency" type="tns:CurrencyInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="TaxInfo" type="tns:TaxInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ArticleState">
+        <s:restriction base="s:string">
+          <s:enumeration value="ARCHIVED" />
+          <s:enumeration value="CONSTITUENT" />
+          <s:enumeration value="FINISHED_PRODUCT" />
+          <s:enumeration value="SUB_PRODUCT" />
+          <s:enumeration value="SERVICE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="BarCodeType">
+        <s:restriction base="s:string">
+          <s:enumeration value="CODE39" />
+          <s:enumeration value="EAN13" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="SalePricingMethod">
+        <s:restriction base="s:string">
+          <s:enumeration value="FIXED_PRICE" />
+          <s:enumeration value="AVERAGE_PRICE" />
+          <s:enumeration value="LAST_SALE_PRICE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ClientInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Confidentiality" type="tns:Confidential" />
+              <s:element minOccurs="0" maxOccurs="1" name="Contacts" type="tns:ArrayOfContactInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Service" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="SalesResponsable" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TechnicalResponsable" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ModifiedDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Origin" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CustomerNumber" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CompanyTaxCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="VatTax" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Bank" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BankAccount" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PaymentMethod" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PaymentMethodRef" nillable="true" type="s:short" />
+              <s:element minOccurs="1" maxOccurs="1" name="Discount" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="HeadQuarter" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Language" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Activity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AccountingCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Scoring" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Remainder" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaxRemainder" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Moral" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Folder" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="BankReference" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TaxType" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="VatTaxValue" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Creator" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Delivery" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Billing" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="Confidential">
+        <s:restriction base="s:string">
+          <s:enumeration value="Public" />
+          <s:enumeration value="ReadOnly" />
+          <s:enumeration value="Private" />
+          <s:enumeration value="Undefined" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfContactInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ContactInfo" nillable="true" type="tns:ContactInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContactInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BussinesTelephone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HomeTelephone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MobilePhone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BusinessAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HomeAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Function" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Service" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CompanyRef" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="PrimaryMailAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SecondaryMailAddress" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Rang" type="tns:ContactRang" />
+              <s:element minOccurs="0" maxOccurs="1" name="Genre" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Author" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Confidentiality" type="tns:Confidential" />
+              <s:element minOccurs="1" maxOccurs="1" name="ModificationDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Language" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ContactRang">
+        <s:restriction base="s:string">
+          <s:enumeration value="Secondaire" />
+          <s:enumeration value="Principal" />
+          <s:enumeration value="Archive" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="UnitInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfString">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Unit" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="UnitReference" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="InfoOfString" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InternalRef" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CurrencyInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfString">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ExchangeRate" type="s:double" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="PaymentMethodInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfString">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Days" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ValueDays" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="EndOfMonth" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Mode" type="tns:PaymentModeInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="PaymentMethodReference" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="PaymentModeInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TaxInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="SaleAccountingCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PurchaseAccountingCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BillLineInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BillReference" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ArticleName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ArticleDescription" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ArticleQuantity" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="ArticlePrice" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="ArticlePurchasePrice" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsValid" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="Discount" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="SaleLineReference" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ShowLineOnBill" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="AssetLineReference" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Article" type="tns:ArticleInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Unit" type="tns:UnitInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="TaxInfo" type="tns:TaxInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OpportHistoryInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="OpportRef" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="AuthorRef" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="AuthorName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ClientRef" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ClientName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CampaignRef" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CampaignName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Origin" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ModificationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ClosingDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Stage" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="NextStep" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Sharing" type="tns:Confidential" />
+              <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Probability" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Margin" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="ScheduledHours" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CampaignInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CampaingName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:base64Binary" />
+              <s:element minOccurs="1" maxOccurs="1" name="ForecastedBudget" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="RealCost" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="ForecastedTurnover" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="CibleReference" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ActualLaunch" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ClosingDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="NextStep" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Sharing" type="tns:Confidential" />
+              <s:element minOccurs="1" maxOccurs="1" name="NPAI" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Stage" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Author" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ModificationDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="History" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PhoningForm" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TypeNote" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Folder" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OpportInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Client" type="tns:ClientInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Campaign" type="tns:CampaignInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="History" type="tns:ArrayOfOpportHistoryInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="Manager" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Origin" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ModificationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ClosingDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Stage" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="NextStep" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Sharing" type="tns:Confidential" />
+              <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="Probability" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Margin" type="s:float" />
+              <s:element minOccurs="1" maxOccurs="1" name="ScheduledHours" type="s:float" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="UserRef" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DaysOfNotice" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Genre" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfOpportHistoryInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OpportHistoryInfo" nillable="true" type="tns:OpportHistoryInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BankInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AccountID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IBAN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AccountingCode" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Currency" type="tns:CurrencyInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="UserInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RealName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:UserType" />
+              <s:element minOccurs="0" maxOccurs="1" name="Alias" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExpirationDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Color" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SMTPServer" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="ClientInfo" type="tns:ClientInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="Language" type="tns:InesLang" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastConnection" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="StaticIP" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IPType" type="tns:IPAddressType" />
+              <s:element minOccurs="1" maxOccurs="1" name="ContactPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CommercialPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="AgendaPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="MarketingPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CustomerServicePermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="OpportunityPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="AnalyticsPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ProductsPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="InventoryPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="SalesPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="InvoicePermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="SuppliersPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TreasuryPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="AccountingPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TimeManagerPermission" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="UserAdministrationPermission" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Initials" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HumanResourceInitials" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ERPPermission" type="tns:ERPPermissions" />
+              <s:element minOccurs="1" maxOccurs="1" name="HumanResourceRef" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="UserType">
+        <s:restriction base="s:string">
+          <s:enumeration value="MANAGER" />
+          <s:enumeration value="ADMINISTRATOR" />
+          <s:enumeration value="USER" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="InesLang">
+        <s:restriction base="s:string">
+          <s:enumeration value="FR" />
+          <s:enumeration value="EN" />
+          <s:enumeration value="ES" />
+          <s:enumeration value="GER" />
+          <s:enumeration value="IT" />
+          <s:enumeration value="POL" />
+          <s:enumeration value="RUS" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="IPAddressType">
+        <s:restriction base="s:string">
+          <s:enumeration value="STATIC" />
+          <s:enumeration value="MANDATORY" />
+          <s:enumeration value="DYNAMIC" />
+          <s:enumeration value="RANGE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ERPPermissions">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="ReadOnly" />
+          <s:enumeration value="Participant" />
+          <s:enumeration value="ActivityResponsable" />
+          <s:enumeration value="ProjectResponsable" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="TaxTypeInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="TaxValue" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsPayable" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OriginInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="IncotermType">
+        <s:restriction base="s:string">
+          <s:enumeration value="EXW" />
+          <s:enumeration value="FAS" />
+          <s:enumeration value="FCA" />
+          <s:enumeration value="FOB" />
+          <s:enumeration value="CFR" />
+          <s:enumeration value="CPT" />
+          <s:enumeration value="CIF" />
+          <s:enumeration value="CIP" />
+          <s:enumeration value="DAF" />
+          <s:enumeration value="DES" />
+          <s:enumeration value="DEQ" />
+          <s:enumeration value="DDU" />
+          <s:enumeration value="DDP" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfBillLineInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BillLineInfo" nillable="true" type="tns:BillLineInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddBillResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddBillResult" type="tns:BillInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SessionID" type="tns:SessionID" />
+      <s:complexType name="SessionID">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="AddBillFromArticles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="client" type="tns:ClientInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="billTo" type="tns:ClientInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="shipTo" type="tns:ClientInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="articles" type="tns:ArrayOfArticleData" />
+            <s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BillExternalRef" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfArticleData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArticleData" nillable="true" type="tns:ArticleData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArticleData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="InternalRef" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ArticleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ArticleDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Disscount" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalePrice" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddBillFromArticlesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddBillFromArticlesResult" type="tns:BillInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBill">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="billReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBillResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBillResult" type="tns:BillInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSale">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="saleReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSaleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSaleResult" type="tns:SaleInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SaleInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SaleInternalReference" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PrePayAmount" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="TaxType" type="tns:TaxTypeInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="Margin" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillTo" type="tns:ClientInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="Incoterm" type="tns:IncotermType" />
+              <s:element minOccurs="0" maxOccurs="1" name="Contract" type="tns:OpportInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="PaymentMethod" type="tns:PaymentMethodInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Folder" type="tns:FolderInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Origin" type="tns:OriginInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:SaleStatus" />
+              <s:element minOccurs="0" maxOccurs="1" name="Client" type="tns:ClientInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Contact" type="tns:ContactInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="SalesPerson" type="tns:UserInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Currency" type="tns:CurrencyInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="ShipTo" type="tns:ClientInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Creator" type="tns:UserInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="ShipmentComment" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Bank" type="tns:BankInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="InternalComment" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Tax1" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Tax2" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="TaxValue1" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="TaxValue2" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="SaleLines" type="tns:ArrayOfSaleLineInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FolderInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="FolderName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="AllowedGroupRef" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="FolderFamilyRef" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="FolderConfidentiality" type="tns:Confidential" />
+              <s:element minOccurs="1" maxOccurs="1" name="Archived" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="SaleStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="NEW" />
+          <s:enumeration value="ON_CREATION" />
+          <s:enumeration value="CREATED" />
+          <s:enumeration value="INVOICED" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfSaleLineInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SaleLineInfo" nillable="true" type="tns:SaleLineInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SaleLineInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ClientReference" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ArticleName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:SaleLineStatus" />
+              <s:element minOccurs="0" maxOccurs="1" name="Bill" type="tns:BillInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="OrderComment" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ClientComment" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Unit" type="tns:UnitInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsPrinted" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="DeliveryDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ScheduledDeliveryDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Transport" type="tns:TransportInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="ConfirmendDeliveryDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="OrderedQuantity" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="DeliveredQuantity" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="SalePrice" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="SaleReference" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="PurchasePrice" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Discount" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ShowSalePrice" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Creator" type="tns:UserInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="Article" type="tns:ArticleInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="ArticleDescription" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Tax" type="tns:TaxInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="SaleLineStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="NEW" />
+          <s:enumeration value="DELIVERED" />
+          <s:enumeration value="CLOSED" />
+          <s:enumeration value="INVOICED" />
+          <s:enumeration value="REGULARIZED" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="TransportInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:InfoOfInt32">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FaxNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MobilePhone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetSales">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientReference" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="status" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSalesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSalesResult" type="tns:ArrayOfSaleInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSaleInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SaleInfo" nillable="true" type="tns:SaleInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddSaleFromArticles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="client" type="tns:ClientInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="billTo" type="tns:ClientInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="shipTo" type="tns:ClientInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="articles" type="tns:ArrayOfArticleData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSaleFromArticlesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddSaleFromArticlesResult" type="tns:SaleInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArticleFamille">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArticleFamilleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArticleFamilleResult" type="tns:TypePDT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TypePDT">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Family" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTVA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTVAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTVAResult" type="tns:TypeTVA" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TypeTVA">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Apply" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCurrency">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCurrencyResult" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnitResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrigine">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrigineResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrigineResult" type="tns:Origin" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Origin">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOpportStageByRef">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOpportStageByRefResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOpportStageByRefResult" type="tns:OpportStage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OpportStage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Probability" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Genre" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Stage" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Default" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOpportStageByGenre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="genre" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOpportStageByGenreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOpportStageByGenreResult" type="tns:ArrayOfOpportStage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOpportStage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OpportStage" nillable="true" type="tns:OpportStage" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOpportTypeByRef">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOpportTypeByRefResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOpportTypeByRefResult" type="tns:OpportType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OpportType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Genre" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Default" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOpportTypeByGenre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="genre" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOpportTypeByGenreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOpportTypeByGenreResult" type="tns:ArrayOfOpportType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOpportType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OpportType" nillable="true" type="tns:OpportType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetArticle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArticleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArticleResult" type="tns:Article" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Article">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Stock" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price1" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Currency" type="tns:CurrencyInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeliveryDelay" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastInventoryDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastPurchaseDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastSaleDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LotManagement" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ManagementCoeficient" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManagementUnit" type="tns:UnitInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaximumStock" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinimumStock" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModificationDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentArticle" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Price1Currency" type="tns:CurrencyInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price2" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Price2Currency" type="tns:CurrencyInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="PropertiesDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PurchaseAccountingCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PurchasePrice" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReceptionDelay" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SaleAccountingCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SaleMinimumQuantity" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalePricingMethod" type="tns:SalePricingMethod" />
+          <s:element minOccurs="1" maxOccurs="1" name="Size" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="SizeUnit" type="tns:UnitInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="State" type="tns:ArticleState" />
+          <s:element minOccurs="1" maxOccurs="1" name="StockBeforeInventory" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Stockable" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Supplier" type="tns:ClientInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxInfo" type="tns:TaxInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Unit" type="tns:UnitInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Warehouse" type="tns:ClientInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="Weight" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="WeightUnit" type="tns:UnitInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetClientAssets">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientAssetsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientAssetsResult" type="tns:ArrayOfAsset" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAsset">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Asset" nillable="true" type="tns:Asset" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Asset">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OpportType" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientRef" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContactRef" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Stage" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Creator" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Gestionnaire" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CommercialRhRef" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModificationDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActivationDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="RenewalDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpirationDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BillingDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstBillingDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClosingDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SignatureCGADate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="NextBillDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndDiscountDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PV" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Discount" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Syntec" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="PVUnite" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CycleFacture" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OpportRef" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DurationMonths" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Preavis" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DiscountType" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BillRef" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ArticleRef" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AgreementDiscount" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastInvoiceNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BillingClRef" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrigineRef" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Historic" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Observations" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Contrat" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Billable" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAsset">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAssetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAssetResult" type="tns:Asset" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOpport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOpportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOpportResult" type="tns:OpportInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientOpports">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientOpportsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientOpportsResult" type="tns:ArrayOfOpportInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOpportInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OpportInfo" nillable="true" type="tns:OpportInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOpportLignes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reference" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOpportLignesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOpportLignesResult" type="tns:ArrayOfOpportLigne" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOpportLigne">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OpportLigne" nillable="true" type="tns:OpportLigne" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OpportLigne">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PV" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Discount" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="TVA" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="QTE" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="PA" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="OpportRef" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ArticleRef" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Preavis" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Valid" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Stage" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Designation" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Delay" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Unit" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetQuote">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuoteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuoteResult" type="tns:Quote" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Quote">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Ref" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientRef" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Edition" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="RhRef" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContactRef" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserRef" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Margin" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="OpportRef" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Facturation" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lines" type="tns:ArrayOfQuoteLine" />
+          <s:element minOccurs="0" maxOccurs="1" name="Incoterm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax1" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax1Value" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax2" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax2Value" nillable="true" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Origin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShippingAddress" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShipTo" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpirationDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="NetPrice" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SaleDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SaleReference" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Folder" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfQuoteLine">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QuoteLine" nillable="true" type="tns:QuoteLine" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuoteLine">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Article" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Unit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tax" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Delay" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowLineOnBill" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Discount" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="SalePrice" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="PurchasePrice" nillable="true" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Valid" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddBillSoapIn">
+    <wsdl:part name="parameters" element="tns:AddBill" />
+  </wsdl:message>
+  <wsdl:message name="AddBillSoapOut">
+    <wsdl:part name="parameters" element="tns:AddBillResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddBillSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="AddBillFromArticlesSoapIn">
+    <wsdl:part name="parameters" element="tns:AddBillFromArticles" />
+  </wsdl:message>
+  <wsdl:message name="AddBillFromArticlesSoapOut">
+    <wsdl:part name="parameters" element="tns:AddBillFromArticlesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddBillFromArticlesSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetBillSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBill" />
+  </wsdl:message>
+  <wsdl:message name="GetBillSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBillResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBillSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetSaleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSale" />
+  </wsdl:message>
+  <wsdl:message name="GetSaleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSaleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSaleSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetSalesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSales" />
+  </wsdl:message>
+  <wsdl:message name="GetSalesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSalesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSalesSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="AddSaleFromArticlesSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSaleFromArticles" />
+  </wsdl:message>
+  <wsdl:message name="AddSaleFromArticlesSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSaleFromArticlesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddSaleFromArticlesSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleFamilleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArticleFamille" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleFamilleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArticleFamilleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleFamilleSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetTVASoapIn">
+    <wsdl:part name="parameters" element="tns:GetTVA" />
+  </wsdl:message>
+  <wsdl:message name="GetTVASoapOut">
+    <wsdl:part name="parameters" element="tns:GetTVAResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTVASessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencySoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrency" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencySoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencySessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetUnitSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnit" />
+  </wsdl:message>
+  <wsdl:message name="GetUnitSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnitSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetOrigineSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrigine" />
+  </wsdl:message>
+  <wsdl:message name="GetOrigineSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrigineResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrigineSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportStageByRefSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOpportStageByRef" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportStageByRefSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOpportStageByRefResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportStageByRefSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportStageByGenreSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOpportStageByGenre" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportStageByGenreSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOpportStageByGenreResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportStageByGenreSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportTypeByRefSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOpportTypeByRef" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportTypeByRefSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOpportTypeByRefResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportTypeByRefSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportTypeByGenreSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOpportTypeByGenre" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportTypeByGenreSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOpportTypeByGenreResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportTypeByGenreSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArticle" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArticleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArticleSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetClientAssetsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientAssets" />
+  </wsdl:message>
+  <wsdl:message name="GetClientAssetsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientAssetsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientAssetsSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetAssetSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAsset" />
+  </wsdl:message>
+  <wsdl:message name="GetAssetSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAssetSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOpport" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOpportResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetClientOpportsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientOpports" />
+  </wsdl:message>
+  <wsdl:message name="GetClientOpportsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientOpportsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientOpportsSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportLignesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOpportLignes" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportLignesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOpportLignesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOpportLignesSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:message name="GetQuoteSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQuote" />
+  </wsdl:message>
+  <wsdl:message name="GetQuoteSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQuoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuoteSessionID">
+    <wsdl:part name="SessionID" element="tns:SessionID" />
+  </wsdl:message>
+  <wsdl:portType name="WSEBSSoap">
+    <wsdl:operation name="AddBill">
+      <wsdl:input message="tns:AddBillSoapIn" />
+      <wsdl:output message="tns:AddBillSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddBillFromArticles">
+      <wsdl:input message="tns:AddBillFromArticlesSoapIn" />
+      <wsdl:output message="tns:AddBillFromArticlesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBill">
+      <wsdl:input message="tns:GetBillSoapIn" />
+      <wsdl:output message="tns:GetBillSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSale">
+      <wsdl:input message="tns:GetSaleSoapIn" />
+      <wsdl:output message="tns:GetSaleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSales">
+      <wsdl:input message="tns:GetSalesSoapIn" />
+      <wsdl:output message="tns:GetSalesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSaleFromArticles">
+      <wsdl:input message="tns:AddSaleFromArticlesSoapIn" />
+      <wsdl:output message="tns:AddSaleFromArticlesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArticleFamille">
+      <wsdl:input message="tns:GetArticleFamilleSoapIn" />
+      <wsdl:output message="tns:GetArticleFamilleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTVA">
+      <wsdl:input message="tns:GetTVASoapIn" />
+      <wsdl:output message="tns:GetTVASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrency">
+      <wsdl:input message="tns:GetCurrencySoapIn" />
+      <wsdl:output message="tns:GetCurrencySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnit">
+      <wsdl:input message="tns:GetUnitSoapIn" />
+      <wsdl:output message="tns:GetUnitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrigine">
+      <wsdl:input message="tns:GetOrigineSoapIn" />
+      <wsdl:output message="tns:GetOrigineSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportStageByRef">
+      <wsdl:input message="tns:GetOpportStageByRefSoapIn" />
+      <wsdl:output message="tns:GetOpportStageByRefSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportStageByGenre">
+      <wsdl:input message="tns:GetOpportStageByGenreSoapIn" />
+      <wsdl:output message="tns:GetOpportStageByGenreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportTypeByRef">
+      <wsdl:input message="tns:GetOpportTypeByRefSoapIn" />
+      <wsdl:output message="tns:GetOpportTypeByRefSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportTypeByGenre">
+      <wsdl:input message="tns:GetOpportTypeByGenreSoapIn" />
+      <wsdl:output message="tns:GetOpportTypeByGenreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArticle">
+      <wsdl:input message="tns:GetArticleSoapIn" />
+      <wsdl:output message="tns:GetArticleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientAssets">
+      <wsdl:input message="tns:GetClientAssetsSoapIn" />
+      <wsdl:output message="tns:GetClientAssetsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAsset">
+      <wsdl:input message="tns:GetAssetSoapIn" />
+      <wsdl:output message="tns:GetAssetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOpport">
+      <wsdl:input message="tns:GetOpportSoapIn" />
+      <wsdl:output message="tns:GetOpportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientOpports">
+      <wsdl:input message="tns:GetClientOpportsSoapIn" />
+      <wsdl:output message="tns:GetClientOpportsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportLignes">
+      <wsdl:input message="tns:GetOpportLignesSoapIn" />
+      <wsdl:output message="tns:GetOpportLignesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuote">
+      <wsdl:input message="tns:GetQuoteSoapIn" />
+      <wsdl:output message="tns:GetQuoteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSEBSSoap" type="tns:WSEBSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddBill">
+      <soap:operation soapAction="http://webservice.ines.fr/AddBill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddBillSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddBillSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddBillFromArticles">
+      <soap:operation soapAction="http://webservice.ines.fr/AddBillFromArticles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddBillFromArticlesSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddBillFromArticlesSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBill">
+      <soap:operation soapAction="http://webservice.ines.fr/GetBill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetBillSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetBillSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSale">
+      <soap:operation soapAction="http://webservice.ines.fr/GetSale" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSaleSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSaleSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSales">
+      <soap:operation soapAction="http://webservice.ines.fr/GetSales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSalesSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSalesSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSaleFromArticles">
+      <soap:operation soapAction="http://webservice.ines.fr/AddSaleFromArticles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddSaleFromArticlesSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddSaleFromArticlesSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticleFamille">
+      <soap:operation soapAction="http://webservice.ines.fr/GetArticleFamille" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetArticleFamilleSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetArticleFamilleSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTVA">
+      <soap:operation soapAction="http://webservice.ines.fr/GetTVA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTVASessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTVASessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrency">
+      <soap:operation soapAction="http://webservice.ines.fr/GetCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrencySessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrencySessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnit">
+      <soap:operation soapAction="http://webservice.ines.fr/GetUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUnitSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUnitSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrigine">
+      <soap:operation soapAction="http://webservice.ines.fr/GetOrigine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOrigineSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOrigineSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportStageByRef">
+      <soap:operation soapAction="http://webservice.ines.fr/GetOpportStageByRef" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOpportStageByRefSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOpportStageByRefSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportStageByGenre">
+      <soap:operation soapAction="http://webservice.ines.fr/GetOpportStageByGenre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOpportStageByGenreSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOpportStageByGenreSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportTypeByRef">
+      <soap:operation soapAction="http://webservice.ines.fr/GetOpportTypeByRef" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOpportTypeByRefSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOpportTypeByRefSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportTypeByGenre">
+      <soap:operation soapAction="http://webservice.ines.fr/GetOpportTypeByGenre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOpportTypeByGenreSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOpportTypeByGenreSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticle">
+      <soap:operation soapAction="http://webservice.ines.fr/GetArticle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetArticleSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetArticleSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientAssets">
+      <soap:operation soapAction="http://webservice.ines.fr/GetClientAssets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientAssetsSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientAssetsSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAsset">
+      <soap:operation soapAction="http://webservice.ines.fr/GetAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAssetSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAssetSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpport">
+      <soap:operation soapAction="http://webservice.ines.fr/GetOpport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOpportSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOpportSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientOpports">
+      <soap:operation soapAction="http://webservice.ines.fr/GetClientOpports" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientOpportsSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientOpportsSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportLignes">
+      <soap:operation soapAction="http://webservice.ines.fr/GetOpportLignes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOpportLignesSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetOpportLignesSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuote">
+      <soap:operation soapAction="http://webservice.ines.fr/GetQuote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetQuoteSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetQuoteSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSEBSSoap12" type="tns:WSEBSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddBill">
+      <soap12:operation soapAction="http://webservice.ines.fr/AddBill" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddBillSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddBillSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddBillFromArticles">
+      <soap12:operation soapAction="http://webservice.ines.fr/AddBillFromArticles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddBillFromArticlesSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddBillFromArticlesSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBill">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetBill" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetBillSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetBillSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSale">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetSale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSaleSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSaleSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSales">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetSales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSalesSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSalesSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSaleFromArticles">
+      <soap12:operation soapAction="http://webservice.ines.fr/AddSaleFromArticles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddSaleFromArticlesSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddSaleFromArticlesSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticleFamille">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetArticleFamille" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetArticleFamilleSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetArticleFamilleSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTVA">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetTVA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTVASessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTVASessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrency">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetCurrency" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrencySessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrencySessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnit">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetUnit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUnitSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUnitSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrigine">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetOrigine" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOrigineSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOrigineSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportStageByRef">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetOpportStageByRef" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOpportStageByRefSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOpportStageByRefSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportStageByGenre">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetOpportStageByGenre" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOpportStageByGenreSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOpportStageByGenreSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportTypeByRef">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetOpportTypeByRef" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOpportTypeByRefSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOpportTypeByRefSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportTypeByGenre">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetOpportTypeByGenre" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOpportTypeByGenreSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOpportTypeByGenreSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArticle">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetArticle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetArticleSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetArticleSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientAssets">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetClientAssets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientAssetsSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientAssetsSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAsset">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetAsset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAssetSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAssetSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpport">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetOpport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOpportSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOpportSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientOpports">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetClientOpports" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientOpportsSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientOpportsSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOpportLignes">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetOpportLignes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOpportLignesSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetOpportLignesSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuote">
+      <soap12:operation soapAction="http://webservice.ines.fr/GetQuote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetQuoteSessionID" part="SessionID" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetQuoteSessionID" part="SessionID" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSEBS">
+    <wsdl:port name="WSEBSSoap" binding="tns:WSEBSSoap">
+      <soap:address location="https://webservices.inescrm.com/ws/wsebs.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSEBSSoap12" binding="tns:WSEBSSoap12">
+      <soap12:address location="https://webservices.inescrm.com/ws/wsebs.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

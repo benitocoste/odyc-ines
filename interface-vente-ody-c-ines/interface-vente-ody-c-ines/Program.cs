@@ -8,16 +8,18 @@ namespace interface_vente_ody_c_ines
 {
 
     //je pense qu'on peut déclarer des structures ici : 
-    public struct vente
+    public class vente
     {
         public string nom_societe;
-        public decimal montant_fixe;
-        public decimal montant_mobile;
-        public decimal total_general;
+        public string siret;
+        public double montant_fixe;
+        public double montant_mobile;
+        public double total_general;
         public string tri_ic;
         public string tri_tmk;
-        public string siret;
+        
     }
+    //par la ?
 
 
     static class Program
@@ -25,13 +27,25 @@ namespace interface_vente_ody_c_ines
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
+        /// 
+
+
+        
+
+
+
         [STAThread]
         static void Main()
         {
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            //je passe mon bouton en passeword
+
+           
+
+
         }
     }
 }
