@@ -17,6 +17,7 @@ namespace interface_vente_ody_c_ines
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            //je passe mon bouton en passeword
         }
     }
 }
