@@ -211,6 +211,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ServiceReference2\wsicm.wsdl" />
+    <None Include="vente.csv" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

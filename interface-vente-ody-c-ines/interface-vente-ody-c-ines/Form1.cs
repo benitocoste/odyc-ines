@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -120,6 +121,47 @@ namespace interface_vente_ody_c_ines
 
             //on ferme tout ça 
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //on créé une liste de structure
+            List<vente> mesventes = new List<vente>();
+            //je créé une vente 
+            vente mavente = new vente();
+            mavente.montant_fixe = 1000;
+            mavente.montant_mobile = 200;
+            mavente.nom_societe = "orkeis";
+            mavente.siret = "234234234234";
+            mavente.total_general = 1200;
+            mavente.tri_ic = "ZER";
+            mavente.tri_tmk = "BEC";
+
+            mesventes.Add(mavente);
+
+            foreach (var lavente in mesventes)
+            {
+                MessageBox.Show(lavente.nom_societe);
+            }
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //ici on lit du csv
+            var reader = new StreamReader(File.OpenRead(@"C:\vente.csv"));
+            
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine(); //ça c'est une ligne
+                var values = line.Split(';'); //ca c'est un tableau de chaine de ma liste
+
+                vente mavente = new vente();
+                mavente.nom_societe = values[0];
+                //c'est pas fini !
+              //  listA.Add(values[0]);
+               // listB.Add(values[1]);
+            }
         }
     }
 }
