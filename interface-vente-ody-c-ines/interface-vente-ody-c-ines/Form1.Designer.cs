@@ -47,10 +47,6 @@
             this.button5 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.output = new System.Windows.Forms.RichTextBox();
-            this.soumettreBTN = new System.Windows.Forms.Button();
-            this.lirecsv = new System.Windows.Forms.Button();
-            this.viderbtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -135,8 +131,7 @@
             this.textBox1.Location = new System.Drawing.Point(154, 58);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 9;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TabIndex = 17;
             // 
             // textBox2
             // 
@@ -235,55 +230,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Interface";
             // 
-            // output
-            // 
-            this.output.Location = new System.Drawing.Point(439, 123);
-            this.output.Name = "output";
-            this.output.Size = new System.Drawing.Size(352, 74);
-            this.output.TabIndex = 19;
-            this.output.Text = "";
-            // 
-            // soumettreBTN
-            // 
-            this.soumettreBTN.Location = new System.Drawing.Point(703, 201);
-            this.soumettreBTN.Name = "soumettreBTN";
-            this.soumettreBTN.Size = new System.Drawing.Size(75, 23);
-            this.soumettreBTN.TabIndex = 22;
-            this.soumettreBTN.Text = "Soumettre";
-            this.soumettreBTN.UseVisualStyleBackColor = true;
-            this.soumettreBTN.Click += new System.EventHandler(this.soumettreBTN_Click);
-            // 
-            // lirecsv
-            // 
-            this.lirecsv.Location = new System.Drawing.Point(517, 77);
-            this.lirecsv.Name = "lirecsv";
-            this.lirecsv.Size = new System.Drawing.Size(75, 23);
-            this.lirecsv.TabIndex = 24;
-            this.lirecsv.Text = "lirecsv";
-            this.lirecsv.UseVisualStyleBackColor = true;
-            this.lirecsv.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // viderbtn
-            // 
-            this.viderbtn.Location = new System.Drawing.Point(455, 201);
-            this.viderbtn.Name = "viderbtn";
-            this.viderbtn.Size = new System.Drawing.Size(75, 23);
-            this.viderbtn.TabIndex = 25;
-            this.viderbtn.Text = "Vider";
-            this.viderbtn.UseVisualStyleBackColor = true;
-            this.viderbtn.Click += new System.EventHandler(this.viderbtn_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(803, 339);
-            this.Controls.Add(this.viderbtn);
-            this.Controls.Add(this.lirecsv);
-            this.Controls.Add(this.soumettreBTN);
-            this.Controls.Add(this.output);
+            this.ClientSize = new System.Drawing.Size(448, 338);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Interface Vente ODYC";
@@ -315,10 +269,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RichTextBox output;
-        private System.Windows.Forms.Button soumettreBTN;
-        private System.Windows.Forms.Button lirecsv;
-        private System.Windows.Forms.Button viderbtn;
     }
 }
 

@@ -72,12 +72,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controleur\Manip.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modele\Infoco.cs" />
+    <Compile Include="Modele\Vente.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\Ebs\Reference.cs">
@@ -85,16 +88,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\ServiceReference1\Reference.cs">
+    <Compile Include="Service References\Log\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\ServiceReference2\Reference.cs">
+    <Compile Include="Service References\Cm\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Dal\WsInes.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +120,75 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.AddClientResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.AddClientWithContactsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.AddContactResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.ClientInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.ContactInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.GetClientResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.GetClientWithContactsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.GetContactAuthenticationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.GetContactPasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.GetContactRefResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.GetContactResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.GetRhEmailResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.GetRHResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.GetSirenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.GetTypeMoralResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.ResHum.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.SearchClientResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.SearchClientResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.SessionID.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.TypeMoral.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.UpdateClientResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.UpdateContactPasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Cm\interface_vente_ody_c_ines.Cm.UpdateContactResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\Ebs\interface_vente_ody_c_ines.Ebs.AddBillFromArticlesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -222,107 +295,38 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Ebs\wsebs.wsdl" />
-    <None Include="Service References\ServiceReference1\interface_vente_ody_c_ines.ServiceReference1.AuthContactResponse.datasource">
+    <None Include="Service References\Log\interface_vente_ody_c_ines.Log.AuthContactResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\interface_vente_ody_c_ines.ServiceReference1.authenticationWsResponse.datasource">
+    <None Include="Service References\Log\interface_vente_ody_c_ines.Log.authenticationWsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\interface_vente_ody_c_ines.ServiceReference1.AuthResponse.datasource">
+    <None Include="Service References\Log\interface_vente_ody_c_ines.Log.AuthResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\interface_vente_ody_c_ines.ServiceReference1.CodeEnum.datasource">
+    <None Include="Service References\Log\interface_vente_ody_c_ines.Log.CodeEnum.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\interface_vente_ody_c_ines.ServiceReference1.contactAuthenticationResponse.datasource">
+    <None Include="Service References\Log\interface_vente_ody_c_ines.Log.contactAuthenticationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\interface_vente_ody_c_ines.ServiceReference1.contactChangePasswordResponse.datasource">
+    <None Include="Service References\Log\interface_vente_ody_c_ines.Log.contactChangePasswordResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\interface_vente_ody_c_ines.ServiceReference1.getControlIdResponse.datasource">
+    <None Include="Service References\Log\interface_vente_ody_c_ines.Log.getControlIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\interface_vente_ody_c_ines.ServiceReference1.getUserRefWsResponse.datasource">
+    <None Include="Service References\Log\interface_vente_ody_c_ines.Log.getUserRefWsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\interface_vente_ody_c_ines.ServiceReference1.logoutSessionWsResponse.datasource">
+    <None Include="Service References\Log\interface_vente_ody_c_ines.Log.logoutSessionWsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\interface_vente_ody_c_ines.ServiceReference1.refreshSessionWsResponse.datasource">
+    <None Include="Service References\Log\interface_vente_ody_c_ines.Log.refreshSessionWsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceReference1\login.wsdl" />
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.AddClientResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.AddClientWithContactsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.AddContactResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.ClientInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.ContactInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.GetClientResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.GetClientWithContactsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.GetContactAuthenticationResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.GetContactPasswordResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.GetContactRefResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.GetContactResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.GetRhEmailResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.GetRHResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.GetSirenResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.GetTypeMoralResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.ResHum.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.SearchClientResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.SearchClientResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.SessionID.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.TypeMoral.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.UpdateClientResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.UpdateContactPasswordResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\interface_vente_ody_c_ines.ServiceReference2.UpdateContactResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference2\wsicm.wsdl" />
+    <None Include="Service References\Log\login.wsdl" />
+    <None Include="Service References\Cm\wsicm.wsdl" />
     <None Include="vente.csv" />
   </ItemGroup>
   <ItemGroup>
@@ -330,15 +334,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fatcow-Farm-Fresh-Ms-exchange.ico" />
-    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
-    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
-    <None Include="Service References\ServiceReference1\Reference.svcmap">
+    <None Include="Service References\Log\configuration91.svcinfo" />
+    <None Include="Service References\Log\configuration.svcinfo" />
+    <None Include="Service References\Log\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\ServiceReference2\configuration91.svcinfo" />
-    <None Include="Service References\ServiceReference2\configuration.svcinfo" />
-    <None Include="Service References\ServiceReference2\Reference.svcmap">
+    <None Include="Service References\Cm\configuration91.svcinfo" />
+    <None Include="Service References\Cm\configuration.svcinfo" />
+    <None Include="Service References\Cm\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -367,9 +371,10 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\Ebs\" />
-    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
-    <WCFMetadataStorage Include="Service References\ServiceReference2\" />
+    <WCFMetadataStorage Include="Service References\Log\" />
+    <WCFMetadataStorage Include="Service References\Cm\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
