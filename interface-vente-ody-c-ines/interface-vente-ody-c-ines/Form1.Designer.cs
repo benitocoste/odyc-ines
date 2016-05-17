@@ -47,6 +47,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.sdfsdf = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -198,6 +199,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.sdfsdf);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.label4);
@@ -229,6 +231,15 @@
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Interface";
+            // 
+            // sdfsdf
+            // 
+            this.sdfsdf.AutoSize = true;
+            this.sdfsdf.Location = new System.Drawing.Point(260, 20);
+            this.sdfsdf.Name = "sdfsdf";
+            this.sdfsdf.Size = new System.Drawing.Size(53, 13);
+            this.sdfsdf.TabIndex = 18;
+            this.sdfsdf.Text = "Mon label";
             // 
             // Form1
             // 
@@ -269,6 +280,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label sdfsdf;
     }
 }
 

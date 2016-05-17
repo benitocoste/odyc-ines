@@ -15,7 +15,7 @@ namespace interface_vente_ody_c_ines.Controleur
         public string chemincsv;
         public List<vente> mesventes = new List<vente>();
         public List<vente> mesventesok = new List<vente>();
-
+        //moncommentaire ici
         public void envoyerToutesLesVentes()
         {
             //c'est parti !
@@ -27,7 +27,16 @@ namespace interface_vente_ody_c_ines.Controleur
                 maconnexion.compte = "fluxdemo3";
                 maconnexion.login = "bcoste";
                 maconnexion.mdp = "admin2015";
+                //faudrait faire la connexion ici
+                maconnexion = webserviceines.login(maconnexion);
+                
+                //et ensuite aller charger toutes les ventes
                 mesventesok.Add(webserviceines.chargerVente(mavente, maconnexion));
+
+                //et ensuite faire la deconnexion
+
+
+
             }
         }
         public void rercupererVentesCsv()

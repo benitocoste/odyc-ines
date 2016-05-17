@@ -39,6 +39,7 @@ namespace interface_vente_ody_c_ines
             MessageBox.Show(mamanip.chemincsv);
             mamanip.rercupererVentesCsv();
             mamanip.envoyerToutesLesVentes();
+            //ca c'est marrant
         }
 
         private void label3_Click(object sender, EventArgs e)

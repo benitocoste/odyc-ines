@@ -327,7 +327,9 @@
     </None>
     <None Include="Service References\Log\login.wsdl" />
     <None Include="Service References\Cm\wsicm.wsdl" />
-    <None Include="vente.csv" />
+    <None Include="..\..\..\..\..\..\..\test\vente.csv">
+      <Link>vente.csv</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

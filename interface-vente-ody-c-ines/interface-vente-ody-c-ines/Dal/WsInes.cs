@@ -10,23 +10,17 @@ namespace interface_vente_ody_c_ines
     class WsInes
     {
 
-        public void Login()
+        public Infoco login( Infoco laconnexion)
         {
-
-        }
-        public vente chargerVente(vente unevente, Infoco maconnexion)
-        {
-            //une nouvelle vente
-            
-
+            //on va se connection
             //on instancie la classe client soap
             interface_vente_ody_c_ines.Log.LoginSoapClient monlogin = new interface_vente_ody_c_ines.Log.LoginSoapClient();
 
             //on construit l'objet de requete
             interface_vente_ody_c_ines.Log.AuthRequest monrequest = new interface_vente_ody_c_ines.Log.AuthRequest();
-            monrequest.compte = maconnexion.compte;
-            monrequest.userName = maconnexion.login;
-            monrequest.password = maconnexion.mdp;
+            monrequest.compte = laconnexion.compte;
+            monrequest.userName = laconnexion.login;
+            monrequest.password = laconnexion.mdp;
             //on construit l'objet de reponse
             interface_vente_ody_c_ines.Log.AuthResponse maresponse = new interface_vente_ody_c_ines.Log.AuthResponse();
 
@@ -34,9 +28,13 @@ namespace interface_vente_ody_c_ines
             maresponse = monlogin.authenticationWs(monrequest);
 
             //on garde l'id au cas ou
-            maconnexion.idsession = maresponse.idSession;
+            laconnexion.idsession = maresponse.idSession;
 
-
+            return laconnexion;
+        }
+        public vente chargerVente(vente unevente, Infoco maconnexion)
+        {
+            //une nouvelle vente
             //on enchaine et on essaye de trouver le client avec le siret.
             //on se fait un objet client soap
             interface_vente_ody_c_ines.Cm.WSICMSoapClient soapcm = new interface_vente_ody_c_ines.Cm.WSICMSoapClient();
@@ -44,7 +42,7 @@ namespace interface_vente_ody_c_ines
 
             //on construit un sessionid
             interface_vente_ody_c_ines.Cm.SessionID masession = new interface_vente_ody_c_ines.Cm.SessionID();
-            masession.ID = maresponse.idSession;
+            masession.ID = maconnexion.idsession;
 
             //on execute tout ça
             int numclient = soapcm.GetSiren(ref masession, unevente.siret);
