@@ -46,8 +46,9 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.sdfsdf = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -199,6 +200,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.sdfsdf);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.button5);
@@ -216,10 +218,19 @@
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Location = new System.Drawing.Point(31, 123);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(402, 204);
+            this.groupBox1.Size = new System.Drawing.Size(402, 211);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Paramètres de l\'application";
+            // 
+            // sdfsdf
+            // 
+            this.sdfsdf.AutoSize = true;
+            this.sdfsdf.Location = new System.Drawing.Point(260, 20);
+            this.sdfsdf.Name = "sdfsdf";
+            this.sdfsdf.Size = new System.Drawing.Size(53, 13);
+            this.sdfsdf.TabIndex = 18;
+            this.sdfsdf.Text = "Mon label";
             // 
             // groupBox2
             // 
@@ -232,20 +243,21 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Interface";
             // 
-            // sdfsdf
+            // button2
             // 
-            this.sdfsdf.AutoSize = true;
-            this.sdfsdf.Location = new System.Drawing.Point(260, 20);
-            this.sdfsdf.Name = "sdfsdf";
-            this.sdfsdf.Size = new System.Drawing.Size(53, 13);
-            this.sdfsdf.TabIndex = 18;
-            this.sdfsdf.Text = "Mon label";
+            this.button2.Location = new System.Drawing.Point(208, 181);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(139, 23);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "Valider interface";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(448, 338);
+            this.ClientSize = new System.Drawing.Size(699, 371);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -281,6 +293,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label sdfsdf;
+        private System.Windows.Forms.Button button2;
     }
 }
 

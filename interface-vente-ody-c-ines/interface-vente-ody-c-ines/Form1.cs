@@ -105,8 +105,28 @@ namespace interface_vente_ody_c_ines
            
         }
 
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string path = @"c:\interface";
+            bool fichierexiste = Directory.Exists(path);
+            //MessageBox.Show(fichierexiste.ToString());
 
-        
+            if (fichierexiste)
+            {
+                MessageBox.Show("le repertoire interface existe");
+                
+
+
+
+            }
+            else
+            {
+                MessageBox.Show("Finalement le repertoire n'existe pas");
+                //on va créer le repertoire
+                Directory.CreateDirectory(path);
+                DirectoryInfo di = Directory.CreateDirectory(path);
+                
+            }
+        }
     }
 }

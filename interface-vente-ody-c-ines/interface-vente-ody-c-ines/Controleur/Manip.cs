@@ -88,6 +88,18 @@ namespace interface_vente_ody_c_ines.Controleur
             
            
         }
+        public void recupererParametrage()
+        {
+            Infoco monparametrage = new Infoco();
+            
+        }
+        public void ecritParametrage(string compte, string login, string mdp, string chemin)
+        {
+            Infoco monparametrage = new Infoco();
+
+            
+        }
+
 
 
 
