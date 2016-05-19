@@ -34,12 +34,13 @@ namespace interface_vente_ody_c_ines
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Manip mamanip = new Manip();
-            mamanip.chemincsv = @"c:\test\ventes.csv";
-            MessageBox.Show(mamanip.chemincsv);
+            Infoco moninfoco = new Infoco(Properties.Settings.Default.ines_compte, Properties.Settings.Default.ines_login, Properties.Settings.Default.ines_mdp, Properties.Settings.Default.csv_chemin);
+
+            Manip mamanip = new Manip(moninfoco);
+            
             mamanip.rercupererVentesCsv();
             mamanip.envoyerToutesLesVentes();
-            //ca c'est marrant
+            mamanip.deplacerFichierTraite();
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -96,37 +97,49 @@ namespace interface_vente_ody_c_ines
 
         
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            Manip mamanip = new Manip();
-            mamanip.chemincsv = @"c:\test\ventes.csv";
-            MessageBox.Show(mamanip.chemincsv);
-            mamanip.rercupererVentesCsv();
-           
-        }
+        
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string path = @"c:\interface";
-            bool fichierexiste = Directory.Exists(path);
-            //MessageBox.Show(fichierexiste.ToString());
+            //on va chercher le fichier
+            string filename = "";
 
-            if (fichierexiste)
+            OpenFileDialog ofd = new OpenFileDialog();
+            DialogResult dr = ofd.ShowDialog();
+
+            if (dr == DialogResult.OK)
             {
-                MessageBox.Show("le repertoire interface existe");
-                
-
-
+                filename = ofd.FileName;
+                textBox4.Text = filename;
 
             }
-            else
-            {
-                MessageBox.Show("Finalement le repertoire n'existe pas");
-                //on va créer le repertoire
-                Directory.CreateDirectory(path);
-                DirectoryInfo di = Directory.CreateDirectory(path);
-                
-            }
+            //on met ça dans le parametrage
+            Properties.Settings.Default.csv_chemin = textBox4.Text;
+            Properties.Settings.Default.Save();
+            MessageBox.Show("Modification ok");
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //on traite le fichier
+            Infoco moninfoco = new Infoco();
+            moninfoco.chemincsv = Properties.Settings.Default.csv_chemin;
+            Manip mamanip = new Manip();
+            mamanip.infconnexion = moninfoco;
+            //c'est parti
+            mamanip.deplacerFichierTraite();
+
+            
         }
     }
 }

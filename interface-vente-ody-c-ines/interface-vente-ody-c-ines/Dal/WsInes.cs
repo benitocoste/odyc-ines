@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace interface_vente_ody_c_ines
 {
@@ -12,25 +13,38 @@ namespace interface_vente_ody_c_ines
 
         public Infoco login( Infoco laconnexion)
         {
-            //on va se connection
-            //on instancie la classe client soap
-            interface_vente_ody_c_ines.Log.LoginSoapClient monlogin = new interface_vente_ody_c_ines.Log.LoginSoapClient();
+            
 
-            //on construit l'objet de requete
-            interface_vente_ody_c_ines.Log.AuthRequest monrequest = new interface_vente_ody_c_ines.Log.AuthRequest();
-            monrequest.compte = laconnexion.compte;
-            monrequest.userName = laconnexion.login;
-            monrequest.password = laconnexion.mdp;
-            //on construit l'objet de reponse
-            interface_vente_ody_c_ines.Log.AuthResponse maresponse = new interface_vente_ody_c_ines.Log.AuthResponse();
+        
 
             //on execute tout ça
-            maresponse = monlogin.authenticationWs(monrequest);
+            
+                //on va se connection
+                //on instancie la classe client soap
+                interface_vente_ody_c_ines.Log.LoginSoapClient monlogin = new interface_vente_ody_c_ines.Log.LoginSoapClient();
+                //on construit l'objet de requete
+                interface_vente_ody_c_ines.Log.AuthRequest monrequest = new interface_vente_ody_c_ines.Log.AuthRequest();
+                monrequest.compte = laconnexion.compte;
+                monrequest.userName = laconnexion.login;
+                monrequest.password = laconnexion.mdp;
+                //on construit l'objet de reponse
+                interface_vente_ody_c_ines.Log.AuthResponse maresponse = new interface_vente_ody_c_ines.Log.AuthResponse();
+                try
+                {
+                    maresponse = monlogin.authenticationWs(monrequest);
 
-            //on garde l'id au cas ou
-            laconnexion.idsession = maresponse.idSession;
+                }catch(Exception)
+                {
+                MessageBox.Show("Erreur de compte/login/mdp");
+                }
+                    //on garde l'id au cas ou
+                laconnexion.idsession = maresponse.idSession;
 
-            return laconnexion;
+                return laconnexion;
+
+            
+
+            
         }
         public vente chargerVente(vente unevente, Infoco maconnexion)
         {
@@ -43,10 +57,25 @@ namespace interface_vente_ody_c_ines
             //on construit un sessionid
             interface_vente_ody_c_ines.Cm.SessionID masession = new interface_vente_ody_c_ines.Cm.SessionID();
             masession.ID = maconnexion.idsession;
+            int numclient = 0;
+            try
+            {
+                //on execute tout ça
+                numclient = soapcm.GetSiren(ref masession, unevente.siret);
+                //MessageBox.Show(numclient.ToString());
+            }
+            catch (Exception)
+            {
+                if(unevente.siret.Length <= 0)
+                {
+                    MessageBox.Show("Un siret est vide dans le fichier");
+                }else
+                {
+                    MessageBox.Show("Le client:" + unevente.nom_societe + " avec le siret :" + unevente.siret + " n'existe pas dans la base");
 
-            //on execute tout ça
-            int numclient = soapcm.GetSiren(ref masession, unevente.siret);
-            //MessageBox.Show(numclient.ToString());
+                }
+            }
+            
 
             //maintenant qu'on à a ref client on peut aller ajouter la vente
 
